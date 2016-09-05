@@ -7,9 +7,9 @@ public interface ITemporalDataStore {
 
     String put(int id, long timestamp, String data);
 
-    String get(int id, long timestanp);
+    Optional<String> get(int id, long timestanp);
 
-    String  get(int id);
+    Optional<String> get(int id);
 
     Optional<String> remove(int id);
 
