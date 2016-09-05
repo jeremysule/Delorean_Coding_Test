@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Created by Jeremy.
  */
 public class CLI {
-    public static enum Command {
+    public enum Command {
         CREATE,
         UPDATE,
         DELETE,
@@ -28,23 +28,26 @@ public class CLI {
 
         Scanner in = new Scanner(System.in);
         while (true){
-            String line = in.nextLine();
-            String argLines[] = line.split(" ");
-            Command command = Command.valueOf(argLines[0]);
-            if (command == null ){
-                //todo: malformed line
-                throw new RuntimeException("ERR Bad command. Quit");
+            try {
+                String line = in.nextLine();
+                String argLines[] = line.split(" ");
+                Command command = Command.valueOf(argLines[0]);
+                if (command == null ){
+                    //todo: malformed line
+                    throw new RuntimeException("ERR Bad command. Quit");
+                }
+                if (command.equals(Command.QUIT)){
+                    return;
+                }
+                handleRequest(command, argLines);
+            } catch (RuntimeException e) {
+                System.out.println("ERR " + e.getMessage());
             }
-            if (command.equals(Command.QUIT)){
-                return;
-            }
-            handleRequest(command, argLines);
         }
 
     }
 
     private static void handleRequest(Command command, String[] argLines) {
-        try {
             switch (command) {
                 case CREATE:
                     expectArguments(4,argLines);
@@ -77,9 +80,6 @@ public class CLI {
                     handleObservation(observation_latest);
                     break;
             }
-        } catch (Exception e) {
-            System.out.println("ERR " + e.getMessage());
-        }
     }
 
     private static void handleObservation(Observation observation_latest) {
