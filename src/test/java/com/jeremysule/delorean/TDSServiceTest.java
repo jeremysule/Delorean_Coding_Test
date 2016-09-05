@@ -25,14 +25,14 @@ public class TDSServiceTest {
     @Test
     public void create() throws Exception {
         tdsService.create(22,343434L,"data1");
-        assertEquals("data1", tds.get(22).get());
+        assertEquals("data1", tds.get(22,343434L).get());
     }
 
     @Test
     public void create_alreadyExists() throws Exception {
         ex.expect(TDSService.TDSServiceException.class);
         tdsService.create(22,343434L,"data1");
-        assertEquals("data1", tds.get(22).get());
+        assertEquals("data1", tds.get(22).get().data);
         tdsService.create(22,34343L,"data2");
     }
 
@@ -42,6 +42,8 @@ public class TDSServiceTest {
         tdsService.update(22,110L,"data2");
         tdsService.update(22,110L,"data3");
 
+        assertEquals("data3", tds.get(22,110L).get());
+        tdsService.update(22,115L,"data4");
         assertEquals("data3", tds.get(22,110L).get());
     }
 
@@ -145,7 +147,7 @@ public class TDSServiceTest {
         tdsService.create(22,100L,"data1");
         tdsService.update(22,110L,"data2");
         tdsService.update(22,110L,"data3");
-        assertEquals("data3",tdsService.latest(22));
+        assertEquals("data3",tdsService.latest(22).data);
     }
 
 

@@ -1,5 +1,6 @@
 package com.jeremysule.delorean;
 
+import com.jeremysule.delorean.data.Observation;
 import com.jeremysule.delorean.data.TemporalDataStore;
 import org.junit.After;
 import org.junit.Before;
@@ -121,7 +122,8 @@ public class TemporalDataStoreTest {
         dataStore.put(23, 90L, "value2");
         dataStore.put(23, 110L, "value3");
         dataStore.put(23, 100L, "value4");
-        assertEquals("value3", dataStore.get(23).get());
+        Observation obs = new Observation(110L, "value3");
+        assertEquals(obs, dataStore.get(23).get());
     }
 
 

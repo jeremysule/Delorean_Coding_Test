@@ -53,11 +53,12 @@ public final class TemporalDataStore implements ITemporalDataStore {
     }
 
     @Override
-    public Optional<String> get(int id) {
+    public Optional<Observation> get(int id) {
         Utils.validateID(id);
 
         if (internalDS.containsKey(id)){
-            return Optional.ofNullable(internalDS.get(id).lastEntry().getValue());
+            Observation result = new Observation(internalDS.get(id).lastEntry().getKey(),internalDS.get(id).lastEntry().getValue());
+            return Optional.of(result);
         } else {
             return Optional.empty();
         }

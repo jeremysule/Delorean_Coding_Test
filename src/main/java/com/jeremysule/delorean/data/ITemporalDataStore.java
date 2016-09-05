@@ -28,12 +28,12 @@ public interface ITemporalDataStore {
     Optional<String> get(int id, long timestanp);
 
     /**
-     * Returns the most recent data for that id, or null if the id has no history.
+     * Returns the most recent observation data for that id, or null if the id has no history.
      *
      * @param id
      * @return
      */
-    Optional<String> get(int id);
+    Optional<Observation> get(int id);
 
     /**
      * Remove all history for that ID.

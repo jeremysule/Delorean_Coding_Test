@@ -1,5 +1,6 @@
 package com.jeremysule.delorean;
 
+import com.jeremysule.delorean.data.Observation;
 import com.jeremysule.delorean.data.TemporalDataStore;
 
 /**
@@ -21,22 +22,19 @@ public class TDSService {
 
     String create(int id, long timestamp, String data) {
         if (tds.hasHistory(id)) {
-            throw new TDSServiceException( "A history already exists for identifier " + id);
-        }
-        return tds.put(id, timestamp, data);
+            throw new TDSServiceException("History exists for identifier " + id);
+        }        return tds.put(id, timestamp, data);
     }
 
     String update(int id, long timestamp, String data){
-        if (!tds.hasHistory(id)) {
-            throw new TDSServiceException( "A history does not exists for identifier " + id);
-        }
-        return tds.put(id, timestamp, data);
+        checkHasHistory(id);
+        String previousData = tds.get(id,timestamp).orElseThrow( () -> new TDSServiceException("No previouse data for id " +id));
+        tds.put(id, timestamp, data);
+        return previousData;
     }
 
     String delete (int id){
-        if (!tds.hasHistory(id)) {
-            throw new TDSServiceException("There is no hisotry for id " + id);
-        }
+        checkHasHistory(id);
         return tds.remove(id).orElseThrow( () -> new TDSServiceException("Could not process delete for id " +id));
     }
 
@@ -55,14 +53,14 @@ public class TDSService {
 
     }
 
-    String latest(int id) {
+    Observation latest(int id) {
         checkHasHistory(id);
         return tds.get(id).orElseThrow( () -> new TDSServiceException("Could not retrieve latest data for " +id));
     }
 
     private void checkHasHistory(int id) {
         if (!tds.hasHistory(id)) {
-            throw new TDSServiceException("There is no history for id " + id);
+            throw new TDSServiceException("No history exists for identifier " + id);
         }
     }
 }
