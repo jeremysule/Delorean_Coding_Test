@@ -1,4 +1,4 @@
-package com.jeremysule.delorean;
+package com.jeremysule.delorean.data;
 
 /**
  * Created by Jeremy.

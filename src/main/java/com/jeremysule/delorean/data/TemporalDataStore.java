@@ -1,8 +1,8 @@
-package com.jeremysule.delorean;
+package com.jeremysule.delorean.data;
 
-import com.jeremysule.delorean.DataStoreException;
-import com.jeremysule.delorean.ITemporalDataStore;
 import com.jeremysule.delorean.Utils;
+import com.jeremysule.delorean.data.DataStoreException;
+import com.jeremysule.delorean.data.ITemporalDataStore;
 
 import java.util.HashMap;
 import java.util.Optional;
