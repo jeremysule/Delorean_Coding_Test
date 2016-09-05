@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="export zip">
+    <output-path>$PROJECT_DIR$/out/artifacts/export_zip</output-path>
+    <root id="root">
+      <element id="archive" name="jeremy_sule_daiwa_delorean.zip">
+        <element id="directory" name="src">
+          <element id="dir-copy" path="$PROJECT_DIR$/src" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/README.txt" />
+        <element id="file-copy" path="$PROJECT_DIR$/pom.xml" />
+      </element>
+    </root>
+  </artifact>
+</component>
