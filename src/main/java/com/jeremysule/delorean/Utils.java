@@ -1,15 +1,13 @@
 package com.jeremysule.delorean;
 
-import java.util.regex.Pattern;
-
 /**
  * Created by Jeremy.
  */
 public class Utils {
 
-    public static final String INVALID_ID = "Invalid identifier: {0}. Must be between 0 and 2^31-1";
+    public static final String INVALID_ID = "Invalid identifier: %d. Must be between 0 and 2^31-1";
 
-    public static final String INVALID_TS = "Invalid timestamp: {0}. Must be between 0 and 2^63-1";
+    public static final String INVALID_TS = "Invalid timestamp: %d. Must be between 0 and 2^63-1";
 
     public static final int MAX_DATA_LENGTH = 16;
 

@@ -1,8 +1,6 @@
 package com.jeremysule.delorean.data;
 
 import com.jeremysule.delorean.Utils;
-import com.jeremysule.delorean.data.DataStoreException;
-import com.jeremysule.delorean.data.ITemporalDataStore;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -33,7 +31,7 @@ public final class TemporalDataStore implements ITemporalDataStore {
             internalDS.put(id,history);
         }
         return get(id,timestamp).orElseThrow(() ->
-                new DataStoreException( "Unable to correctly store data {0}->{1}->{2}",id, timestamp, data ));
+                new DataStoreException("Unable to correctly store data %d->%d->%d", id, timestamp, data));
     }
 
     @Override

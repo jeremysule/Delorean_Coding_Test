@@ -1,0 +1,18 @@
+OK 1.5
+OK 1.5
+OK 1.5
+OK 1.6
+OK 105 1.6
+ERR No history exists for identifier '1'
+OK 2.5
+ERR A history already exists for identifier '1'
+OK 2.5
+OK 2.4
+OK 2.3
+OK 125 2.2
+OK 2.3
+OK 2.3
+OK 2.35
+OK 2.35
+OK 2.35
+OK 2.35

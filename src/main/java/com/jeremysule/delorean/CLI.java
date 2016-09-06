@@ -14,7 +14,7 @@ public class CLI {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        while (true){
+        while (in.hasNextLine()) {
             try {
                 String line = in.nextLine();
                 if (handleCommandLine(line) == false)

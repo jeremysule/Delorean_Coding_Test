@@ -8,12 +8,6 @@ import com.jeremysule.delorean.data.TemporalDataStore;
  */
 public class TDSService {
 
-    public static class TDSServiceException extends RuntimeException {
-        public TDSServiceException(String message) {
-            super(message);
-        }
-    }
-
     private TemporalDataStore tds;
 
     public TDSService(TemporalDataStore tds) {
@@ -41,14 +35,14 @@ public class TDSService {
     String delete(int id, long timestamp) {
         checkHasHistory(id);
         return tds.remove(id,timestamp).orElseThrow( () -> new TDSServiceException(String.format(
-                "Could not process delete for id={0} and timestamp={1}", id, timestamp
+                "Could not process delete for id=%d and timestamp=%d", id, timestamp
         )));
     }
 
     String get(int id, long timestamp) {
         checkHasHistory(id);
         return tds.get(id, timestamp).orElseThrow(() -> new TDSServiceException(String.format(
-                "No prior history available for id={0} and timestamp={1}", id, timestamp
+                "No prior history available for id=%d and timestamp=%d", id, timestamp
         )));
 
     }
@@ -61,6 +55,12 @@ public class TDSService {
     private void checkHasHistory(int id) {
         if (!tds.hasHistory(id)) {
             throw new TDSServiceException("No history exists for identifier " + id);
+        }
+    }
+
+    public static class TDSServiceException extends RuntimeException {
+        public TDSServiceException(String message) {
+            super(message);
         }
     }
 }
