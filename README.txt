@@ -1,6 +1,3 @@
-Jeremy Sule
-jeremy.sule@gmail.com
-
 Main service class: com.jeremysule.delorean.TDSService
 Main class, to run the app: com.jeremysule.delorean.CLI
 
